@@ -156,17 +156,15 @@ RUN wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmd
     && rm -r GeoLite2-Country.mmdb
 
 # Install Maxmind GEOIP PHP Mod
-RUN  wget http://sg-web-01.poggy.info/maxmind-reader-ext.tgz \
-    && tar zxvf maxmind-reader-ext.tgz \
-    && rm -r maxmind-reader-ext.tgz \ 
+RUN git clone https://github.com/maxmind/MaxMind-DB-Reader-php.git \
     && ( \ 
-        cd ext \
+        cd MaxMind-DB-Reader-php/ext \
         && phpize \
         && ./configure \
         && make \
         && make install \
     ) \
-    && rm -r ext \
+    && rm -r MaxMind-DB-Reader-php \
     && docker-php-ext-enable maxminddb
 
 
