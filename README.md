@@ -79,13 +79,5 @@ This will start an instance, and you are ready to go.
 
 	docker exec -t -i <container id> /bin/bash
 
-## Linking with other containers
-
-To use this image linking with MySQL, you have to have a running MySQL instance, more information about MySQL docker image, please refer to tommylau/mysql. Suppose you have a MySQL instance named mysql5.6_server, we can link it in our php instance with the name mysql like this:
-
-	docker run -d -p 80:80 --name php -v /path/to/web:/var/www/html --link mysql5.6_server:mysql -d liuxinnian/php
-
-Then in the instance, you can use the hostname mysql to connect to the database.
-
 # reference
 Mainly reference from Dockerfile: https://hub.docker.com/r/tommylau/php/~/dockerfile/
