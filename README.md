@@ -85,7 +85,7 @@ To use this image linking with redis, you have to have a running redis instance.
 
 	docker run -d -p 80:80 --name php -v /path/to/web:/var/www/html --link some_redis:redis -d liuxinnian/php
 
-Then in the instance, you can use the hostname mysql to connect to the database.
+Then in the instance, you can use the hostname redis to connect to the database.
 
 # reference
 Mainly reference from Dockerfile: https://hub.docker.com/r/tommylau/php/~/dockerfile/
