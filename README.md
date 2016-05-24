@@ -79,5 +79,13 @@ This will start an instance, and you are ready to go.
 
 	docker exec -t -i <container id> /bin/bash
 
+## Linking with other containers
+
+To use this image linking with redis, you have to have a running redis instance. Suppose you have a redis instance named some_redis, we can link it in our php instance with the name redis like this:
+
+	docker run -d -p 80:80 --name php -v /path/to/web:/var/www/html --link some_redis:redis -d liuxinnian/php
+
+Then in the instance, you can use the hostname mysql to connect to the database.
+
 # reference
 Mainly reference from Dockerfile: https://hub.docker.com/r/tommylau/php/~/dockerfile/
