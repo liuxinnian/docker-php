@@ -53,6 +53,7 @@ Enabled:
 * redis
 * memcached
 * xdebug
+* inotify
 
 Defined:
 
