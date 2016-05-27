@@ -131,9 +131,9 @@ RUN apt-get update && apt-get install -y \
 && docker-php-ext-install gd \
 && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu && docker-php-ext-install ldap
 
-RUN pecl install -f mongo redis memcached xdebug
+RUN pecl install -f mongo redis memcached xdebug inotify-0.1.6
 
-RUN docker-php-ext-enable mongo redis memcached xdebug
+RUN docker-php-ext-enable mongo redis memcached xdebug inotify
 
 # Install Maxmind GEOIP lib
 RUN git clone --recursive https://github.com/maxmind/libmaxminddb \
