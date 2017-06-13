@@ -1,8 +1,5 @@
 FROM php:5-apache
 
-# Mainly reference from below Dockerfile
-# https://hub.docker.com/r/tommylau/php/~/dockerfile/
-
 MAINTAINER Xinnian Liu <liuxinnian@palmax.com>
 
 # Fix docker-php-ext-install script error
