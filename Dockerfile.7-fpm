@@ -1,0 +1,56 @@
+FROM php:7-fpm
+
+MAINTAINER Xinnian Liu <liuxinnian@palmax.com>
+
+# Fix docker-php-ext-install script error
+RUN sed -i 's/docker-php-\(ext-$ext.ini\)/\1/' /usr/local/bin/docker-php-ext-install
+
+#Tools
+RUN apt-get update && apt-get install -y \
+		libtool \
+		automake \
+		apt-utils \
+		curl \
+		g++
+
+#Devel
+RUN apt-get update && apt-get install -y \		
+		libpq-dev \
+		libmemcached-dev \
+		libmcrypt-dev \
+		libfreetype6 \
+		libjpeg62-turbo \
+		libjpeg62-turbo-dev \
+		libpng12-dev \
+		libpng12-0 \
+		libsqlite3-dev \
+		libjpeg-dev \
+		libmcrypt4 \
+		libpng3 \
+		libpng++-dev \
+		libgd-dev
+
+RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql mcrypt pdo_sqlite
+
+#GD
+RUN docker-php-ext-configure gd \
+        --enable-gd-native-ttf \
+        --with-jpeg-dir=/usr/lib/x86_64-linux-gnu \
+        --with-png-dir=/usr/lib/x86_64-linux-gnu \
+        --with-freetype-dir=/usr/lib/x86_64-linux-gnu \
+    && docker-php-ext-install gd
+
+#PECL
+RUN pecl install -o -f redis-3.1.2 && docker-php-ext-enable redis
+RUN pecl install -o -f memcached-3.0.3 && docker-php-ext-enable memcached
+
+# php.ini
+RUN sed 's/^;\(date.timezone.*\)/\1 \"Etc\/UTC\"/' > /usr/local/etc/php/php.ini
+RUN sed -i 's/;\(cgi\.fix_pathinfo=\)1/\10/' /usr/local/etc/php/php.ini
+
+# Cleanup all downloaded packages
+RUN apt-get -y autoclean && apt-get -y autoremove && apt-get -y clean && rm -rf /var/lib/apt/lists/* && apt-get update
+
+
+EXPOSE 9000
+CMD ["php-fpm"]
