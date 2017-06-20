@@ -14,10 +14,10 @@ Enabled:
 * pdo_sqlite
 * redis
 * memcached
+* maxminddb
 
 Defined:
 
-* display_errors = "on"
 * cgi.fix_pathinfo = 0
 * date.timezone = "Etc/UTC"
 
