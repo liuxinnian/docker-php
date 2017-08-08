@@ -32,9 +32,10 @@ RUN apt-get update && apt-get install -y \
 		libmcrypt4 \
 		libpng3 \
 		libpng++-dev \
-		libgd-dev
+		libgd-dev \
+        libzzip-dev
 
-RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql mcrypt mysql mysqli pdo_sqlite
+RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql mcrypt mysql mysqli pdo_sqlite zip
 
 #GD
 RUN docker-php-ext-configure gd \
@@ -47,7 +48,6 @@ RUN docker-php-ext-configure gd \
 #PECL
 RUN pecl install -o -f redis-2.2.8 && docker-php-ext-enable redis
 RUN pecl install -o -f memcached-2.2.0 && docker-php-ext-enable memcached
-RUN pecl install -o -f zip-1.15.1 && docker-php-ext-enable zip
 
 
 #Maxmind GEOIP
