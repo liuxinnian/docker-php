@@ -95,7 +95,7 @@ RUN git clone https://github.com/maxmind/MaxMind-DB-Reader-php.git \
     && docker-php-ext-enable maxminddb
 
 #Composer
-php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin/ --filename=composer 
+RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin/ --filename=composer 
 
 # php.ini
 RUN sed 's/^;\(date.timezone.*\)/\1 \"Etc\/UTC\"/' > /usr/local/etc/php/php.ini
