@@ -34,10 +34,9 @@ RUN apt-get update && apt-get install -y \
 		libpng++-dev \
 		libgd-dev \
         libzzip-dev \
-        libxml2-dev \
-        php-soap
+        libxml2-dev
 
-RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql mcrypt mysql mysqli pdo_sqlite zip soap
+RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql mcrypt mysql mysqli pdo_sqlite zip
 
 #GD
 RUN docker-php-ext-configure gd \
