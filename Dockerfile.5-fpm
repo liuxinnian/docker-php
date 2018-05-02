@@ -20,7 +20,8 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \		
 		libpq-dev \
         libsqlite3-dev \
-        libmemcached-dev
+        libmemcached-dev \
+        libzip-dev
 
 RUN docker-php-ext-install pdo_mysql pdo_pgsql pgsql pdo_sqlite zip
 
