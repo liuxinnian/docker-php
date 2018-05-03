@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
         git \
         unzip
 		
-
 #Devel
 RUN apt-get update && apt-get install -y \		
 		libpq-dev \
@@ -36,11 +35,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
 
-
 #PECL
 RUN pecl install -o -f redis-2.2.8 && docker-php-ext-enable redis
 RUN pecl install -o -f memcached-2.2.0 && docker-php-ext-enable memcached
-
 
 #Maxmind GEOIP
 RUN git clone --recursive https://github.com/maxmind/libmaxminddb \

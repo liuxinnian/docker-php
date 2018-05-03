@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 #PECL
-RUN pecl install -o -f rmcrypt-1.0.1 && docker-php-ext-enable mcrypt
+RUN pecl install -o -f mcrypt-1.0.1 && docker-php-ext-enable mcrypt
 RUN pecl install -o -f redis-4.0.2 && docker-php-ext-enable redis
 RUN pecl install -o -f memcached-3.0.4 && docker-php-ext-enable memcached
 
